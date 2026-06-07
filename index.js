@@ -18,17 +18,14 @@ import {
 //telegram bot for sending the notifications
 import TelegramBot from 'node-telegram-bot-api';
 const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN);
-const chatId = !test ? '-1001382133604' : process.env.MY_PRIVATE_CHAT_ID;
+const chatId = process.env.MY_PRIVATE_CHAT_ID;
 
 //to fetch the current shown results from website
 import fetch from 'isomorphic-fetch';
 
 //to save previous shown results. to avoid sending message for already shown results when restarting the app
-import MongoClient from 'mongodb';
-
-const connection = MongoClient.MongoClient.connect(process.env.dbURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+import { MongoClient } from 'mongodb';
+const connection = new MongoClient(process.env.dbURI).connect();
 });
 
 (async () => {
