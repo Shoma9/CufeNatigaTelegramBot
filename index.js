@@ -29,7 +29,7 @@ const connection = new MongoClient(process.env.dbURI).connect();
 
 (async () => {
   const collection = (await connection).db('test').collection('natiga');
-  let prevShown = await collection.findOne({});
+let prevShown = await collection.findOne({}) || { prevShown: '000000000000000000000000000000000000000000000000000000' };
   while (true) {
     try {
       prevShown = await check(prevShown, collection);
