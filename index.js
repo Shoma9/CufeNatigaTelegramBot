@@ -26,7 +26,6 @@ import fetch from 'isomorphic-fetch';
 //to save previous shown results. to avoid sending message for already shown results when restarting the app
 import { MongoClient } from 'mongodb';
 const connection = new MongoClient(process.env.dbURI).connect();
-});
 
 (async () => {
   const collection = (await connection).db('test').collection('natiga');
